@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class PublicController extends Controller
 {
@@ -11,9 +12,9 @@ class PublicController extends Controller
         return view('welcome');
     } 
 
-    public function singlePost($id)
+    public function singlePost(Post $post)
     {
-        return view('singlePost');
+        return view('singlePost', compact('post'));
     }
 
     public function about()
