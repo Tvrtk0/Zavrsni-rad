@@ -1,8 +1,7 @@
-@extends('layouts.master')
+@extends('layouts.dashboard')
 
 @section('content')
-
-
+<br>
 <div class="container">
     <nav class="navbar navbar-light bg-white">
         <a href="#" class="navbar-brand">Laravel Blog</a>
@@ -16,7 +15,7 @@
                 </div>
             </div>
         </form>
-    </nav>
+    </nav><br>
 
     <div class="container-fluid">
         <div class="row">
@@ -91,8 +90,10 @@
                         </div>
                     </div>
                 </div>
-                <br>
+                <br><br>
+                
                 <!--Post-->
+                @foreach($posts as $post)
                 <div class="card ">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
@@ -101,8 +102,8 @@
                                     <img class="rounded-circle" width="45" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="">
                                 </div>
                                 <div class="ml-2">
-                                    <div class="h5 m-0">{{ Auth::user()->name }}</div>
-                                    <div class="h7 text-muted">{{ Auth::user()->email }}</div>
+                                    <div class="h5 m-0">{{ $post->user->name }}</div>
+                                    <div class="h7 text-muted">{{ $post->user->email }}</div>
                                 </div>
                             </div>
                             <div>
@@ -122,9 +123,9 @@
 
                     </div>
                     <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
-                        <a class="card-link" href="#">
-                            <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{ date_format($post->created_at, 'F d, Y') }}</div>
+                        <a class="card-link" href="{{ route('post',$post->id) }}">
+                            <h5 class="card-title">{{ $post->title }}</h5>
                         </a>
 
                         <p class="card-text">
@@ -133,12 +134,15 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                        <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i>
+                            {{ $post->comments->count() }} | Comments
+                        </a>
                     </div>
-                </div>
+                </div><br>
+                @endforeach
                 <!-- Post /////-->
+
             </div>
 
             <!-- KARTICE
@@ -167,9 +171,5 @@
             </div>-->
         </div>
     </div>
-</div>       
-
-
-
-@endsection   
-
+</div>
+@endsection

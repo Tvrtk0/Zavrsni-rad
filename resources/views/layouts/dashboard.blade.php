@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Laravel Blog</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
@@ -14,7 +14,7 @@
 
 <style>
     body { 
-        padding-top: 50px; 
+        padding-top: 60px; 
        /* background-image: url("{{ URL::to('/images/slika.jpeg') }}"); */
         height:2000px;
         background-color: #4D4D4D;
@@ -27,13 +27,21 @@
        
     }
     .bg-black {
-    background-color: #202020 ;
-    color: red !important;
+        background-color: #202020 ;
+        color: red !important;
     }
 
     .navbar li a {
-    color: black;
-}
+        color: black;
+    }
+
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+    }
+    .dropdown>.dropdown-toggle:active {
+        pointer-events: none;
+    }
+
 </style>
 
 
@@ -42,7 +50,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black" >
         <div class="container">
-            <a class="navbar-brand" href="#">BLOG</a>
+            <a class="navbar-brand" href="{{ url('/') }}">BLOG</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,87 +58,104 @@
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link cool-link" href="{{ route('index') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link cool-link" href="{{ route('about') }}">About</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link cool-link" href="{{ route('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link cool-link" href="{{ route('about') }}">About</a>
+                    </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ Auth::user()->name }}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item cool-link" href="{{ route('home') }}">Profile</a>
-                    <a class="dropdown-item cool-link" href="#">Logout</a>
-                    </div>
-                </li>
+                    <!-- Author -->
+                    @if(Auth::user()->author == true)
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Author
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="nav-title">&nbsp;&nbsp;Author</li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('authorDashboard') }}">
+                                    <i class="fas fa-user-tie"></i> Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('authorPosts') }}">
+                                    <i class="fas fa-paperclip"></i> Posts
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('authorComments') }}">
+                                    <i class="fas fa-comments"></i> Comments
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endif
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        *Sidebar menu*
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="nav-title">&nbsp;&nbsp;User</li>
-                        <li>
-                            <a class="dropdown-item cool-link" href="{{ route('home') }}">
-                                <i class="fas fa-comments"></i> Comments
-                            </a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <form method="POST" id="logout-form" action="{{ route('logout') }}">@csrf</form>
-                            <a class="dropdown-item cool-link" href="#" onclick="document.getElementById('logout-form').submit();">
-                                <i class="fas fa-sign-out-alt"></i>Logout
-                            </a>
-                        </li>
+                    @if(Auth::user()->admin == true)
+                    <!-- Admin -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="nav-title">&nbsp;&nbsp;Admin</li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('adminDashboard') }}">
+                                    <i class="fas fa-user-tie"></i> Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('adminPosts') }}">
+                                    <i class="fas fa-paperclip"></i> Posts
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('adminComments') }}">
+                                    <i class="fas fa-comments"></i> Comments
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('adminUsers') }}">
+                                    <i class="fas fa-users"></i></i> Users
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endif
 
-
-                        <li class="nav-title">&nbsp;&nbsp;Author</li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('home') }}">
-                            <i class="fas fa-user-tie"></i> Dashboard
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('home') }}">
-                            <i class="fas fa-paperclip"></i> Posts
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('home') }}">
-                                <i class="fas fa-comments"></i> Comments
-                            </a>
-                        </li>
-
-
-                        <li class="nav-title">&nbsp;&nbsp;Admin</li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('home') }}">
-                            <i class="fas fa-user-tie"></i> Dashboard
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('home') }}">
-                            <i class="fas fa-paperclip"></i> Posts
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('home') }}">
-                                <i class="fas fa-comments"></i> Comments
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('home') }}">
-                            <i class="fas fa-users"></i></i> Users
-                            </a>
-                        </li>
-                    </ul>
-
-                </li>
-
+                    <!-- User -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="nav-title">&nbsp;&nbsp;User</li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('userProfile') }}">
+                                    <i class="fas fa-user-tie"></i> Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('userDashboard') }}">
+                                    <i class="fas fa-user-tie"></i> Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('userComments') }}">
+                                    <i class="fas fa-comments"></i> Comments
+                                </a>
+                            </li>
+                            <li>
+                                <form method="POST" id="logout-form" action="{{ route('logout') }}">@csrf</form>
+                                <a class="dropdown-item cool-link" href="#" onclick="document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt"></i>Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
+
             </div>
         </div>
     </nav>

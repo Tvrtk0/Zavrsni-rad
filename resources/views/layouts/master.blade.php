@@ -21,13 +21,42 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-
     </head>
 
-<body style="padding-top:100px;">
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+<style>
+    body { 
+        padding-top: 60px; 
+       /* background-image: url("{{ URL::to('/images/slika.jpeg') }}"); */
+        height:2000px;
+        background-color: #4D4D4D;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment:fixed;
+       /* background-image: linear-gradient(#325955,#0F1D1B);!important
+      /*  background-image: linear-gradient(#667eea, #764ba2 );
+      background-image: linear-gradient( #485563, #29323c);*/
+    }
+    .bg-black {
+        background-color: #202020 ;
+        color: red !important;
+    }
+
+    .navbar li a {
+        color: black;
+    }
+
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+    }
+    .dropdown>.dropdown-toggle:active {
+        pointer-events: none;
+    }
+</style>    
+
+<body>
+   <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black">
         <div class="container">
-            <a class="navbar-brand" href="#">BLOG</a>
+            <a class="navbar-brand" href="{{ url('/') }}">BLOG</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -36,29 +65,29 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('index') }}">Home</a>
+                    <a class="nav-link cool-link" href="{{ route('index') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('about') }}">About</a>
+                    <a class="nav-link cool-link" href="{{ route('about') }}">About</a>
                 </li>
 
                 @if(Auth::check())
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Profile</a>
+                        <a class="nav-link cool-link" href="{{ route('home') }}">Profile</a>
                     </li>
                     
                     <li class="nav-item">
                         <form method="POST" id="logout-form" action="{{ route('logout') }}">@csrf</form>
-                        <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                        <a class="nav-link cool-link" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
                     </li>
 
                     @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link cool-link" href="{{ route('login') }}">Login</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link cool-link" href="{{ route('register') }}">Register</a>
                     </li>
                 @endif
                 </ul>
