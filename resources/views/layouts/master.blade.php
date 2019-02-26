@@ -27,9 +27,10 @@
     body { 
         padding-top: 60px; 
        /* background-image: url("{{ URL::to('/images/slika.jpeg') }}"); */
-        height:2000px;
-        background-color: #4D4D4D;
-        background-repeat: no-repeat;
+        height:auto;
+        background-color: #03021F;
+        padding-bottom:100px;
+       /* background-repeat: no-repeat;
         background-size: cover;
         background-attachment:fixed;
        /* background-image: linear-gradient(#325955,#0F1D1B);!important
@@ -64,7 +65,7 @@
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
-                <li class="nav-item">
+                <li class="nav-items">
                     <a class="nav-link cool-link" href="{{ route('index') }}">Home</a>
                 </li>
                 <li class="nav-item">
@@ -73,7 +74,7 @@
 
                 @if(Auth::check())
                     <li class="nav-item">
-                        <a class="nav-link cool-link" href="{{ route('home') }}">Profile</a>
+                        <a class="nav-link cool-link" href="{{ route('home') }}">Dashboard</a>
                     </li>
                     
                     <li class="nav-item">

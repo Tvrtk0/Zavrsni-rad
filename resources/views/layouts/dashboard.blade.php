@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel Blog</title>
+        <title>@yield('title','Laravel Blog Dashboard')</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
@@ -16,19 +16,19 @@
     body { 
         padding-top: 60px; 
        /* background-image: url("{{ URL::to('/images/slika.jpeg') }}"); */
-        height:2000px;
-        background-color: #4D4D4D;
-        background-repeat: no-repeat;
+        height:auto;
+        padding-bottom:80px;
+        background-color: #03021F;
+       /* background-repeat: no-repeat;
         background-size: cover;
         background-attachment:fixed;
        /* background-image: linear-gradient(#325955,#0F1D1B);!important
       /*  background-image: linear-gradient(#667eea, #764ba2 );
-      background-image: linear-gradient( #485563, #29323c);*/
+        background-image: linear-gradient( #485563, #29323c);*/
        
     }
     .bg-black {
-        background-color: #202020 ;
-        color: red !important;
+        background-color: #262626 ;
     }
 
     .navbar li a {
@@ -42,6 +42,12 @@
         pointer-events: none;
     }
 
+    .navbar-brand>img {
+        max-height: 35px;
+        height: 100%;
+        width: auto;
+        margin: 0;
+    }
 </style>
 
 
@@ -50,7 +56,10 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black" >
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">BLOG</a>
+            
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img class="logo" src="{{URL::asset('/images/logo2.png')}}"> BLOG
+            </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -132,11 +141,6 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li class="nav-title">&nbsp;&nbsp;User</li>
                             <li>
-                                <a class="dropdown-item cool-link" href="{{ route('userProfile') }}">
-                                    <i class="fas fa-user-tie"></i> Profile
-                                </a>
-                            </li>
-                            <li>
                                 <a class="dropdown-item cool-link" href="{{ route('userDashboard') }}">
                                     <i class="fas fa-user-tie"></i> Dashboard
                                 </a>
@@ -144,6 +148,11 @@
                             <li>
                                 <a class="dropdown-item cool-link" href="{{ route('userComments') }}">
                                     <i class="fas fa-comments"></i> Comments
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item cool-link" href="{{ route('userProfile') }}">
+                                    <i class="fas fa-cog"></i> Account Settings
                                 </a>
                             </li>
                             <li>

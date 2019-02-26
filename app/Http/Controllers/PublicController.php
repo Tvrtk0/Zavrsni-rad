@@ -14,7 +14,8 @@ class PublicController extends Controller
         if(Auth::check() == false){
             return redirect('/login');
         } else {
-            $posts = Post::all();
+           // $posts = Post::all();
+            $posts = Post::orderBy('created_at','desc')->get();
             return view('welcome', compact('posts'));
         }        
     } 

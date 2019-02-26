@@ -11,10 +11,22 @@
                     
                     <div class="col-md-2"></div>    
                     <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header bg-light">
+                        <div class="card text-white bg-dark border-primary">
+                            <div class="card-header text-white bg-dark border-primary">
                                 Account Settings
                             </div>
+
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
 
                             @if($errors->any())
                             <div class="alert alert-danger">
@@ -27,7 +39,7 @@
                             @endif
                             <form action="{{ route('userProfilePost') }}" method="POST">
                             @csrf
-                            <div class="card-body">
+                            <div class="card-body ">
                                 <div class="row mb-5">
                                     <div class="col-md-4 mb-4">
                                         <div>Profile Information</div>
@@ -57,13 +69,13 @@
 
                                 <hr>
 
-                                <div class="row mt-5">
-                                    <div class="col-md-4 mb-4">
+                                <div class="row mt-5 border-primary">
+                                    <div class="col-md-4 mb-4 ">
                                         <div>Access Credentials</div>
                                         <div class="text-muted small">Leave credentials fields empty if you don't wish to change the password.</div>
                                     </div>
 
-                                    <div class="col-md-8">
+                                    <div class="col-md-8 border-primary">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -91,7 +103,7 @@
                             </div>
                                           
 
-                            <div class="card-footer bg-light text-right">
+                            <div class="card-footer text-right text-white bg-dark border-primary">
                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                             </div>
                             </form>  

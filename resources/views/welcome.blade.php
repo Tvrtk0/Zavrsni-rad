@@ -3,8 +3,9 @@
 @section('content')
 <br>
 <div class="container">
-    <nav class="navbar navbar-light bg-white">
-        <a href="#" class="navbar-brand">Laravel Blog</a>
+    <nav class="navbar navbar-light bg-dark border border-primary rounded">
+        <a href="#" class="navbar-brand text-white">Laravel Blog</a>
+        
         <form class="form-inline">
             <div class="input-group">
                 <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -20,36 +21,69 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
-                <div class="card">
+                <div class="card text-white bg-dark border-primary">
                     <div class="card-body">
                         <div class="h5">{{ Auth::user()->email }}</div>
-                        <div class="h7 text-muted">Name : {{ Auth::user()->name }}</div>
-                        <div class="h7">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium 
+                        <div class="h7 text-muted">Name: {{ Auth::user()->name }}</div>
+                        <div class="h7">
+                            Welcome to the home page {{ Auth::user()->name }}! Here you can make your own posts or read others posts. 
                         </div>
                     </div>
+                </div><br>
+
+                <div class="card text-white bg-dark border-primary">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="h6 text-muted">Followers</div>
-                            <div class="h5">420</div>
+                        <li class="list-group-item text-white bg-dark border-primary">
+                            <div class="h6 text-muted">Number of users</div>
+                            <div class="h5">{{ Auth::user()->count() }}</div>
                         </li>
-                        <li class="list-group-item">
-                            <div class="h6 text-muted">Following</div>
-                            <div class="h5">4.200</div>
+                        <li class="list-group-item text-white bg-dark border-primary">
+                            <div class="h6 text-muted">Posts Today</div>
+                            <div class="h5"> - </div>
                         </li>
+                        <li class="list-group-item text-white bg-dark border-primary">
+                            <div class="h6 text-muted">Posts All Time</div>
+                            <div class="h5"> - </div>
+                        </li>
+                        <li class="list-group-item text-white bg-dark border-primary">
+                            <div class="h6 text-muted">Comments Today</div>
+                            <div class="h5"> - </div>
+                        </li>
+                        <li class="list-group-item text-white bg-dark border-primary">
+                            <div class="h6 text-muted">Comments All Time</div>
+                            <div class="h5"> - </div>
+                        </li>
+                        
                     </ul>
-                </div>
+                </div><br>
             </div>
+            
 
             <div class="col-md-9">
-                <div class="card">
+                @if(Session::has('success'))
+                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                @endif
+
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="{{ route('createPost') }}" method="POST">
+                @csrf
+                <div class="card text-white bg-dark border-primary">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Make
+                                <a class="nav-link active text-white bg-dark" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Make
                                     a publication</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images">Images</a>
+                                <a class="nav-link text-white bg-dark" id="images-tab" data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images">Images</a>
                             </li>
                         </ul>
                     </div>
@@ -57,8 +91,15 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                                 <div class="form-group">
-                                    <label class="sr-only" for="message">post</label>
-                                    <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+                                    <label class="sr-only" for="normal-input">Title</label>
+                                    <input name="title" class="form-control text-white bg-dark border-primary" 
+                                        placeholder="Title"></input>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="sr-only" for="message">Pssost</label>
+                                    <textarea name="content" class="form-control text-white bg-dark border-primary" 
+                                        rows="3" placeholder="What are you thinking?"></textarea>
                                 </div>
 
                             </div>
@@ -66,7 +107,9 @@
                                 <div class="form-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">Upload image</label>
+                                        <label class="custom-file-label text-white bg-dark border-primary" for="customFile">
+                                            Upload image
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="py-4"></div>
@@ -76,25 +119,15 @@
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-primary">Post</button>
                             </div>
-                            <div class="btn-group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="fa fa-globe"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                    <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+                </form>
                 <br><br>
                 
                 <!--Post-->
                 @foreach($posts as $post)
-                <div class="card ">
+                <div class="card text-white bg-dark border-primary">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
@@ -123,18 +156,17 @@
 
                     </div>
                     <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{ date_format($post->created_at, 'F d, Y') }}</div>
                         <a class="card-link" href="{{ route('post',$post->id) }}">
                             <h5 class="card-title">{{ $post->title }}</h5>
                         </a>
 
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor
-                            sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                            {{ $post->content }}
                         </p>
+
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{ date_format($post->created_at, 'F d, Y') }}</div>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="card-link"><i class="far fa-thumbs-up"></i> Like</a>
                         <a href="#" class="card-link"><i class="fa fa-comment"></i>
                             {{ $post->comments->count() }} | Comments
                         </a>
