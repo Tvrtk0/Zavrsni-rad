@@ -6,7 +6,7 @@
     <nav class="navbar navbar-light bg-dark border border-primary rounded">
         <a href="#" class="navbar-brand text-white">Laravel Blog</a>
         
-        <form class="form-inline">
+    <!--    <form class="form-inline">
             <div class="input-group">
                 <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
@@ -15,7 +15,7 @@
                     </button>
                 </div>
             </div>
-        </form>
+        </form>-->
     </nav><br>
 
     <div class="container-fluid">
@@ -39,19 +39,19 @@
                         </li>
                         <li class="list-group-item text-white bg-dark border-primary">
                             <div class="h6 text-muted">Posts Today</div>
-                            <div class="h5"> - </div>
+                            <div class="h5"> {{ \App\Post::all()->where('created_at', '>=', \Carbon\Carbon::today())->count() }} </div>
                         </li>
                         <li class="list-group-item text-white bg-dark border-primary">
                             <div class="h6 text-muted">Posts All Time</div>
-                            <div class="h5"> - </div>
+                            <div class="h5"> {{ \App\Post::all()->count() }} </div>
                         </li>
                         <li class="list-group-item text-white bg-dark border-primary">
                             <div class="h6 text-muted">Comments Today</div>
-                            <div class="h5"> - </div>
+                            <div class="h5"> {{ \App\Comment::all()->where('created_at', '>=', \Carbon\Carbon::today())->count() }} </div>
                         </li>
                         <li class="list-group-item text-white bg-dark border-primary">
                             <div class="h6 text-muted">Comments All Time</div>
-                            <div class="h5"> - </div>
+                            <div class="h5"> {{ \App\Comment::all()->count() }} </div>
                         </li>
                         
                     </ul>
@@ -93,7 +93,7 @@
                                 <div class="form-group">
                                     <label class="sr-only" for="normal-input">Title</label>
                                     <input name="title" class="form-control text-white bg-dark border-primary" 
-                                        placeholder="Title"></input>
+                                        placeholder="Title">
                                 </div>
                                 
                                 <div class="form-group">
