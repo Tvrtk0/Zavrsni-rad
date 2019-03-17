@@ -37,14 +37,14 @@
                                     <td>{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</td>
                                     <td>{{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }}</td>
                                     <td>{{ $post->comments->count() }}</td>
-                                    <td class="row">
-                                        <a class="btn btn-warning col-md-6" href="{{ route('adminPostEdit', $post->id ) }}">
+                                    <td>
+                                        <a class="btn btn-warning" href="{{ route('adminPostEdit', $post->id ) }}">
                                             Edit
                                         </a>
-                                        <form method="POST" id="deletePost-{{ $post->id }}" 
+                                        <form method="POST" id="deletePost-{{ $post->id }}" style="display:none;"
                                             action="{{ route('adminDeletePost', $post->id) }}">@csrf
                                         </form>
-                                        <a class="btn btn-danger col-md-6"
+                                        <a class="btn btn-danger"
                                             onclick="document.getElementById('deletePost-{{ $post->id }}').submit()">
                                             Delete
                                         </a>

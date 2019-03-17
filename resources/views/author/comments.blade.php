@@ -28,7 +28,7 @@
                                 <tr>
                                     <td>{{ $comment->id }}</td>
                                     <td class="text-nowrap">
-                                        <a href="{{ route('post', $comment->id) }}">
+                                        <a href="{{ route('post', $comment->post_id) }}">
                                             {{ $comment->post->title }}
                                         </a>
                                     </td>

@@ -25,6 +25,7 @@ Route::prefix('user')->group(function(){
     Route::get('profile','UserController@profile')->name('userProfile');
     Route::post('profile', 'UserController@profilePost')->name('userProfilePost');
     Route::post('comment/{id}/delete', 'UserController@deleteComment')->name('deleteComment');
+    Route::post('new-comments', 'UserController@newComment')->name('newComment');
 });
 
 Route::prefix('author')->group(function(){
@@ -46,4 +47,7 @@ Route::prefix('admin')->group(function(){
     Route::post('post/{id}/edit', 'AdminController@postEditPost')->name('adminPostEditPost');
     Route::post('post/{id}/delete', 'AdminController@deletePost')->name('adminDeletePost');
     Route::post('comment/{id}/delete', 'AdminController@deleteComment')->name('adminDeleteComment');
+    Route::get('user/{id}/edit', 'AdminController@editUser')->name('adminEditUser');
+    Route::post('user/{id}/edit', 'AdminController@editUserPost')->name('adminEditUserPost');
+    Route::post('user/{id}/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
 });

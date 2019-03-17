@@ -43,7 +43,7 @@
     }
 
     .navbar-brand>img {
-        max-height: 35px;
+        max-height: 33px;
         height: 100%;
         width: auto;
         margin: 0;
@@ -58,7 +58,7 @@
         <div class="container">
             
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img class="logo" src="{{URL::asset('/images/logo2.png')}}"> BLOG
+                <img class="logo" src="{{URL::asset('/images/logo2.png')}}"> Blog
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

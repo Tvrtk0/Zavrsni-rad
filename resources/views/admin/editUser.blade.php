@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title') Editing {{ $post->title }} @endsection
+@section('title') Editing {{ $user->name }} @endsection
 
 @section('content')
 <br><br><br><br>
@@ -21,7 +21,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('adminPostEditPost', $post->id) }}" method="POST">
+                <form action="{{ route('adminEditUserPost', $user->id) }}" method="POST">
                 @csrf
                 <div class="card text-white bg-dark border-primary">
                     <div class="card-header">
@@ -29,7 +29,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active text-white bg-dark" id="posts-tab" data-toggle="tab" 
                                 href="#posts" role="tab" aria-controls="posts" aria-selected="true">
-                                    Editing post {{ $post->title }}
+                                    Editing user {{ $user->name }}
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -41,18 +41,27 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                                 <div class="form-group">
-                                    <label class="sr-only" for="normal-input">Title</label>
-                                    <input name="title" value="{{ $post->title }}" class="form-control text-white bg-dark border-primary" 
-                                        placeholder="Title">
+                                    <label class="sr-only" for="normal-input">Name</label>
+                                    <input name="name" value="{{ $user->name }}" class="form-control text-white bg-dark border-primary">
                                 </div>
-                                
                                 <div class="form-group">
-                                    <label class="sr-only" for="message">Posts</label>
-                                    <textarea name="content" class="form-control text-white bg-dark border-primary" 
-                                        rows="9" placeholder="What are you thinking?">{{ $post->content }}</textarea>
+                                    <label class="sr-only" for="normal-input">email</label>
+                                    <input name="email" type="email" value="{{ $user->email }}" class="form-control text-white bg-dark border-primary">
                                 </div>
-
+                                <div class="form-group form-check">
+                                    <label for="normal-input">Premissions</label><br>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="author" 
+                                            value=1 {{ $user->author == true ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="normal-input">Author</label>
+                                        <br>
+                                        <input type="checkbox" class="form-check-input" name="admin" 
+                                            value=1 {{ $user->admin == true ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="normal-input">Admin</label>
+                                    </div>
+                                </div>
                             </div>
+
                             <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
                                 <div class="form-group">
                                     <div class="custom-file">
@@ -67,7 +76,7 @@
                         </div>
                         <div class="btn-toolbar justify-content-between">
                             <div class="btn-group">
-                                <button type="submit" class="btn btn-primary">Update post</button>
+                                <button type="submit" class="btn btn-primary">Update user</button>
                             </div>
                         </div>
                     </div>

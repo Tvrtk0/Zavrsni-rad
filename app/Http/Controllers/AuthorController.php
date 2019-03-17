@@ -13,6 +13,7 @@ class AuthorController extends Controller
     public function __construct()
     {
         $this->middleware('checkRole:author');
+        $this->middleware('auth');
     }
 
     public function dashboard()

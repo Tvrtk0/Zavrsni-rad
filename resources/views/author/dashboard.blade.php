@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <div class="card p-4">
+                <div class="card p-4 text-white bg-dark border-primary">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <span class="h4 d-block font-weight-normal mb-2">
@@ -21,7 +21,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card p-4">
+                <div class="card p-4 text-white bg-dark border-primary">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <span class="h4 d-block font-weight-normal mb-2">
@@ -34,7 +34,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card p-4">
+                <div class="card p-4 text-white bg-dark border-primary">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <span class="h4 d-block font-weight-normal mb-2">
@@ -47,7 +47,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card p-4">
+                <div class="card p-4 text-white bg-dark border-primary">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <span class="h4 d-block font-weight-normal mb-2">
@@ -64,7 +64,7 @@
 
         <div class="row ">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card text-white bg-dark border-primary">
                     <div class="card-header">
                         Posts by day
                     </div>

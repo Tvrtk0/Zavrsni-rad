@@ -139,19 +139,6 @@
                                     <div class="h7 text-muted">{{ $post->user->email }}</div>
                                 </div>
                             </div>
-                            <div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" >
-                                        <div class="h6 dropdown-header">Configuration</div>
-                                        <a class="dropdown-item" href="#">Save</a>
-                                        <a class="dropdown-item" href="#">Hide</a>
-                                        <a class="dropdown-item" href="#">Report</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -161,10 +148,13 @@
                         </a>
 
                         <p class="card-text">
-                            {{ $post->content }}
+                            {{ str_limit( $post->content, 300) }}
                         </p>
 
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{ date_format($post->created_at, 'F d, Y') }}</div>
+                        <div class="text-muted h7 mb-2"> 
+                            <i class="fa fa-clock-o"></i>
+                            {{ date_format($post->created_at, 'F d, Y') }}
+                        </div>
                     </div>
                     <div class="card-footer">
                         <a href="#" class="card-link"><i class="fa fa-comment"></i>
@@ -173,34 +163,10 @@
                     </div>
                 </div><br>
                 @endforeach
-                <!-- Post /////-->
+                <!-- Post -->
+                {{ $posts->links() }}
 
             </div>
-
-            <!-- KARTICE
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
-                <br>
-                <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-            </div>-->
         </div>
     </div>
 </div>

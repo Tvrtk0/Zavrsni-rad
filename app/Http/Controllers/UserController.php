@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function dashboard()
     {
         return view('user.dashboard');
@@ -58,6 +63,18 @@ class UserController extends Controller
             
             return redirect()->back()->with('success', "Password changed successfully");
         }
+
+        return back();
+    }
+
+    public function newComment(Request $request)
+    {
+        $comment = new Comment;
+
+        $comment->post_id = $request['post'];
+        $comment->user_id = Auth::id();
+        $comment->content = $request['comment'];
+        $comment->save();
 
         return back();
     }
