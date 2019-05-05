@@ -49,17 +49,16 @@
                         Comments by days
                     </div>
 
-                    <div class="card-body p-0 text-white bg-dark border-primary">
-                        <div class="p-4">
-                            <canvas id="line-chart" width="100%" height="120"></canvas>
-                        </div>
-
-                       
+                    <div class="card-body p-10">
+                        {!! $chart->container() !!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+{!! $chart->script() !!}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 
 @endsection

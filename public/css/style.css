@@ -6,6 +6,26 @@ html, body {
     margin: 0;
 }
 
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background-color: rgba(43, 76, 88, 0.822);
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 10px;
+  }
+  
+  #myBtn:hover {
+    background-color: #555;
+  }
+
 .full-height {
     height: 40vh;
 }
@@ -62,4 +82,13 @@ html, body {
 .cool-link:hover::after {
     width: 100%;
     transition: width .3s;
+}
+
+.cool-link-active {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #35FF00;
+    
 }

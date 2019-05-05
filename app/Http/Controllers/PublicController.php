@@ -23,14 +23,7 @@ class PublicController extends Controller
 
     public function singlePost(Post $post)
     {
-        // $comment = Comment::where('user_id', Auth::id())->pluck('id')->toArray();
-
-        // $comments = Comment::whereIn('comment_id', $comment)->orderBy('created_at','desc')->paginate(4);
-
-        
-
         $comments = Comment::where('post_id', $post->id)->orderBy('created_at','desc')->paginate(4);
-
 
         return view('singlePost', compact('post', 'comments'));
     }

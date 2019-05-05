@@ -157,7 +157,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i>
+                        <a  href="{{ route('post',$post->id) }}" class="card-link"><i class="fa fa-comment"></i>
                             {{ $post->comments->count() }} | Comments
                         </a>
                     </div>

@@ -55,8 +55,25 @@
                 </div>
             </div>
         </div><br>
-        
+
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="card text-white bg-dark border-primary">
+                    <div class="card-header">
+                        Posts by days
+                    </div>
+
+                    <div class="card-body p-10">
+                        {!! $chart->container() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+
+{!! $chart->script() !!}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 
 @endsection
