@@ -16,7 +16,7 @@ High school final assignment | Tehnička škola Bjelovar  2018. / 2019.
 
 
 ### Preview
-![example](https://user-images.githubusercontent.com/36823337/109682301-958be080-7b7e-11eb-8113-4fbbd64bb931.jpg)
+![example](https://user-images.githubusercontent.com/36823337/109965275-0520dd80-7cef-11eb-9df2-ce7f4111382c.jpg)
 
 
 
